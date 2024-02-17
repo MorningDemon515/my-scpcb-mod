@@ -1,7 +1,7 @@
 
-Include "FastExt.bb"
-Include "FastText_Unicode.bb"
-Include "StrictLoads.bb"
+Include "Source code\FastExt.bb"
+Include "Source code\FastText_Unicode.bb"
+Include "Source code\StrictLoads.bb"
 Global OptionFile$ = "options.ini"
 
 Global Font1%, Font2%, Font3%, Font4%
@@ -781,7 +781,7 @@ Global CameraFogFar# = GetINIFloat("options.ini", "options", "camera fog far")
 
 Global MouseSens# = GetINIFloat("options.ini", "options", "mouse sensitivity")
 
-Include "dreamfilter.bb"
+Include "Source code\dreamfilter.bb"
 
 Dim LightSpriteTex(10)
 
@@ -1008,11 +1008,11 @@ DrawLoading(35, True)
 
 ;----------------------------------------------  Items  -----------------------------------------------------
 
-Include "Items.bb"
+Include "Source code\Items.bb"
 
 ;--------------------------------------- Particles ------------------------------------------------------------
 
-Include "Particles.bb"
+Include "Source code\Particles.bb"
 
 ;-------------------------------------  Doors --------------------------------------------------------------
 
@@ -1442,11 +1442,11 @@ End Function
 
 DrawLoading(40,True)
 
-Include "MapSystem.bb"
+Include "Source code\MapSystem.bb"
 
 DrawLoading(80,True)
 
-Include "NPCs.bb"
+Include "Source code\NPCs.bb"
 
 ;-------------------------------------  Events --------------------------------------------------------------
 
@@ -8123,7 +8123,7 @@ Global ApacheObj%,ApacheRotorObj%
 
 ;---------------------------------------------------------------------------------------------------
 
-Include "menu.bb"
+Include "Source code\menu.bb"
 MainMenuOpen = True
 
 ;---------------------------------------------------------------------------------------------------
@@ -11285,7 +11285,7 @@ Function NullGame()
 	
 End Function
 
-Include "save.bb"
+Include "Source code\save.bb"
 
 ;--------------------------------------- music & sounds ----------------------------------------------
 

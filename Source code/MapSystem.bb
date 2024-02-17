@@ -766,7 +766,7 @@ Const max_deviation_distance% = 3
 Const return_chance% = 27
 Const center = 5 ;(gridsize-1) / 2
 
-Include "Drawportals.bb"
+Include "Source code\Drawportals.bb"
 
 Type Forest
 	Field TileMesh%[6]
@@ -1560,7 +1560,8 @@ Function FillRoom(r.Rooms)
 			Next
 			
 			EntityParent dp\cam,fr\Forest_Pivot
-						it = CreateItem("Document SCP-860-1", "paper", r\x + 672.0 * RoomScale, r\y + 176.0 * RoomScale, r\z + 335.0 * RoomScale)
+			
+			it = CreateItem("Document SCP-860-1", "paper", r\x + 672.0 * RoomScale, r\y + 176.0 * RoomScale, r\z + 335.0 * RoomScale)
 			RotateEntity it\obj, 0, r\angle+10, 0
 			EntityParent(it\obj, r\obj)
 			
@@ -3296,7 +3297,8 @@ Function FillRoom(r.Rooms)
 			d\locked = True : d\DisableWaypoint = True
 			
 			tex = LoadTexture_Strict("GFX\map\Door02.jpg")
-			For ztemp = 0 To 1				d.Doors = CreateDoor(r\level, r\x - 5760 * RoomScale, 0, r\z + (320+896*ztemp) * RoomScale, 0, r, False)
+			For ztemp = 0 To 1
+				d.Doors = CreateDoor(r\level, r\x - 5760 * RoomScale, 0, r\z + (320+896*ztemp) * RoomScale, 0, r, False)
 				d\locked = True
 				d\DisableWaypoint = True
 				
@@ -3473,7 +3475,8 @@ Function FillRoom(r.Rooms)
 			
 			PositionEntity(sc\ScrObj, r\x - 272.0 * RoomScale, -544.0 * RoomScale, r\z + 3020.0 * RoomScale)
 			TurnEntity(sc\ScrObj, 0, -10, 0)
-			EntityParent sc\ScrObj, r\obj			sc\CoffinEffect=0
+			EntityParent sc\ScrObj, r\obj
+			sc\CoffinEffect=0
 			
 			;r\NPC[0] = CreateNPC(NPCtypeD, r\x + 1088.0 * RoomScale, 1096.0 * RoomScale, r\z + 1728.0 * RoomScale)
 			r\Objects[5] = CreatePivot()
@@ -5243,7 +5246,7 @@ End Function
 
 
 
-Include "Skybox.bb"
+Include "Source code\Skybox.bb"
 
 
 ;~IDEal Editor Parameters:
