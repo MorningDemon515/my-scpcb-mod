@@ -259,7 +259,7 @@ Function UpdateMainMenu()
 				Case 3
 					txt = "QUIT"
 					If temp Then
-						DeInitExt
+
 						End
 					EndIf
 			End Select
@@ -504,8 +504,8 @@ Function UpdateMainMenu()
 				HUDenabled = DrawTick(x + 280 * MenuScale, y + 141 * MenuScale, HUDenabled)		
 				
 				Color 255,255,255				
-				Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
-				BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)		
+				;Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
+				;BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)		
 				
 				Text (x + 20 * MenuScale, y + 220 * MenuScale, "Control configuration:")	
 				
@@ -617,7 +617,6 @@ Function UpdateLauncher()
 	MenuScale = 1
 	
 	Graphics3DExt(LauncherWidth, LauncherHeight, 0, 2)
-	InitExt
 	
 	SetBuffer BackBuffer()
 	

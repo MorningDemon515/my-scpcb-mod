@@ -1,5 +1,4 @@
 
-Include "Source code\FastExt.bb"
 Include "Source code\FastText_Unicode.bb"
 Include "Source code\StrictLoads.bb"
 Global OptionFile$ = "options.ini"
@@ -2447,7 +2446,7 @@ Function UpdateEvents()
 							PositionEntity(Curr173\Collider, EntityX(e\room\Objects[5], True), EntityY(Curr173\Collider), EntityZ(e\room\Objects[5], True))
 							RotateEntity(Curr173\Collider, 0, 0, 0, True)
 							ResetEntity(Curr173\Collider)
-						ElseIf e\EventState < 14000 ; pelaaja sisällä huoneessa
+						ElseIf e\EventState < 14000 ; pelaaja sisï¿½llï¿½ huoneessa
 							e\EventState = Min(e\EventState + FPSfactor, 13000)
 							
 							If e\EventState < 10300 Then
@@ -2517,7 +2516,7 @@ Function UpdateEvents()
 							Animate2(e\room\NPC[6]\obj, AnimTime(e\room\NPC[6]\obj),357,381, 0.05)
 							
 							e\EventState = Min(e\EventState + FPSfactor, 19000)
-							If e\EventState < 14100 Then ;valot sammuu ja 173 tappaa ensimmäisen class d:n
+							If e\EventState < 14100 Then ;valot sammuu ja 173 tappaa ensimmï¿½isen class d:n
 								
 								;14000-14030
 								If e\EventState < 14060 Then
@@ -2907,7 +2906,7 @@ Function UpdateEvents()
 												
 											EndIf
 										Else
-											For i = 2 To 4 ;helikopterit hyökkää 106:n kimppuun
+											For i = 2 To 4 ;helikopterit hyï¿½kkï¿½ï¿½ 106:n kimppuun
 												e\room\NPC[i]\State = 3 
 												e\room\NPC[i]\EnemyX = EntityX(Curr106\obj,True)
 												e\room\NPC[i]\EnemyY = EntityY(Curr106\obj,True)+5.0
@@ -2975,7 +2974,7 @@ Function UpdateEvents()
 												For i = 5 To 8
 													e\room\NPC[i]\State = 2
 												Next
-												For i = 2 To 4 ;helikopterit hyökkää pelaajan kimppuun
+												For i = 2 To 4 ;helikopterit hyï¿½kkï¿½ï¿½ pelaajan kimppuun
 													e\room\NPC[i]\State = 2
 												Next
 												HideEntity Curr106\obj
@@ -3597,7 +3596,7 @@ Function UpdateEvents()
 				
 				If e\EventState2 > 0 Then
 					If e\EventState2 > 350 Then
-						If e\EventState2 < 360 Then ;kun ovi avataan ensimmäisen kerran, toistetaan ääni
+						If e\EventState2 < 360 Then ;kun ovi avataan ensimmï¿½isen kerran, toistetaan ï¿½ï¿½ni
 							e\EventState2=Min(e\EventState2+FPSfactor,355)
 							If RemoteDoorOn Then 	
 								;e\Sound = LoadSound_Strict("SFX\079_3.ogg")
@@ -3612,7 +3611,7 @@ Function UpdateEvents()
 									EndIf
 								Next
 							EndIf							
-						Else ;ovi avattu kerran, suljetaan uudestaan jos pelaaja laittaa remotedoorin pois päältä
+						Else ;ovi avattu kerran, suljetaan uudestaan jos pelaaja laittaa remotedoorin pois pï¿½ï¿½ltï¿½
 							e\EventState2=e\EventState2+FPSfactor
 							If e\EventState2 > 800 Then
 								For e2.Events = Each Events
@@ -3824,7 +3823,7 @@ Function UpdateEvents()
 								ElseIf e\EventState > 42.0*70
 									CameraShake = 0.5
 									
-									;helikopterit lähtee pois
+									;helikopterit lï¿½htee pois
 									e\room\NPC[0]\EnemyX = EntityX(e\room\Objects[19],True)+4.0
 									e\room\NPC[0]\EnemyY = EntityY(e\room\Objects[19],True)+4.0
 									e\room\NPC[0]\EnemyZ = EntityZ(e\room\Objects[19],True)+4.0
@@ -3855,7 +3854,7 @@ Function UpdateEvents()
 												EndIf
 											Next
 											
-											If temp = 1 Then ;nuken kaukolaukaisu päällä, räjäytetään
+											If temp = 1 Then ;nuken kaukolaukaisu pï¿½ï¿½llï¿½, rï¿½jï¿½ytetï¿½ï¿½n
 												ExplosionTimer = Max(ExplosionTimer, 0.1)
 												SelectedEnding = "B2"
 											Else
@@ -4104,7 +4103,7 @@ Function UpdateEvents()
 							HideEntity e\room\Objects[4]
 						EndIf						
 						
-						If e\SoundCHN = 0 Then ;soitetaan huminaa jos pelaaja ei lähellä
+						If e\SoundCHN = 0 Then ;soitetaan huminaa jos pelaaja ei lï¿½hellï¿½
 							e\SoundCHN = PlaySound2(TeslaIdleSFX, Camera, e\room\Objects[3],4.0,0.5)
 						Else
 							If Not ChannelPlaying(e\SoundCHN) Then e\SoundCHN = PlaySound2(TeslaIdleSFX, Camera, e\room\Objects[3],4.0,0.5)
@@ -4112,7 +4111,7 @@ Function UpdateEvents()
 						
 						For i = 0 To 2
 							If Distance(EntityX(Collider),EntityZ(Collider),EntityX(e\room\Objects[i],True),EntityZ(e\room\Objects[i],True)) < 300.0*RoomScale Then
-								;soitetaan laukaisuääni
+								;soitetaan laukaisuï¿½ï¿½ni
 								If KillTimer => 0 Then 
 									PlayerSoundVolume = Max(8.0,PlayerSoundVolume)
 									StopChannel(e\SoundCHN)
@@ -4126,7 +4125,7 @@ Function UpdateEvents()
 						If Curr106\State < -10 And e\EventState = 0 Then 
 							For i = 0 To 2
 								If Distance(EntityX(Curr106\Collider),EntityZ(Curr106\Collider),EntityX(e\room\Objects[i],True),EntityZ(e\room\Objects[i],True)) < 300.0*RoomScale Then
-									;soitetaan laukaisuääni
+									;soitetaan laukaisuï¿½ï¿½ni
 									If KillTimer => 0 Then 
 										StopChannel(e\SoundCHN)
 										e\SoundCHN = PlaySound2(TeslaActivateSFX, Camera, e\room\Objects[3],4.0,0.5)
@@ -5921,8 +5920,8 @@ Function UpdateEvents()
 					Else
 						e\EventState=(e\EventState+FPSfactor*0.7)
 						;0-50 = menee keskelle
-						;50-200 = katselee ympärilleen
-						;200-250 = lähtee pois
+						;50-200 = katselee ympï¿½rilleen
+						;200-250 = lï¿½htee pois
 						
 						
 						If e\EventState < 50 Then
@@ -6380,7 +6379,7 @@ Function UpdateEvents()
 								Curr106\State = -0.1
 								e\EventState = 601
 							EndIf
-						ElseIf Curr106\State > 0 ;106 kiertää isointa huonetta
+						ElseIf Curr106\State > 0 ;106 kiertï¿½ï¿½ isointa huonetta
 							angle = (e\EventState/10 Mod 360)
 							PositionEntity(Curr106\Collider, EntityX(e\room\obj), 0.2+0.35+Sin(e\EventState/14.0+i*20.0)*0.4, EntityX(e\room\obj))
 							RotateEntity(Curr106\Collider, 0,angle,0)
@@ -6391,12 +6390,12 @@ Function UpdateEvents()
 						EndIf
 					EndIf 
 					
-					If EntityDistance(Collider, Curr106\Collider) < 0.3 Then ;106 hyökkää jos on tarpeeksi lähellä pelaajaa
+					If EntityDistance(Collider, Curr106\Collider) < 0.3 Then ;106 hyï¿½kkï¿½ï¿½ jos on tarpeeksi lï¿½hellï¿½ pelaajaa
 						Curr106\Idle = False
 						Curr106\State = -11
 					EndIf
 					
-					If e\EventState2 = 1 Then ;pienessä huoneessa
+					If e\EventState2 = 1 Then ;pienessï¿½ huoneessa
 						
 						PositionEntity(e\room\Objects[9], EntityX(e\room\Objects[8],True)+3384*RoomScale, 0.0, EntityZ(e\room\Objects[8],True))
 						
@@ -6766,7 +6765,7 @@ Function UpdateEvents()
 						EndIf
 						
 						If EntityY(Collider) < -1600*RoomScale Then
-							;pelaaja on "uloskäynnillä"
+							;pelaaja on "uloskï¿½ynnillï¿½"
 							If Distance(EntityX(e\room\Objects[16],True),EntityZ(e\room\Objects[16],True),EntityX(Collider),EntityZ(Collider))<144*RoomScale Then
 								
 								CameraFogColor Camera, 0,0,0
@@ -6802,7 +6801,7 @@ Function UpdateEvents()
 				;[Block]
 				Local Magnets% = False, FemurBreaker% = False
 				
-				;eventstate2 = onko magneetit päällä
+				;eventstate2 = onko magneetit pï¿½ï¿½llï¿½
 				
 				If SoundTransmission Then 
 					If e\EventState = 1 Then
@@ -6875,8 +6874,8 @@ Function UpdateEvents()
 						
 						UpdateButton(e\room\Objects[4])
 						If ClosestButton = e\room\Objects[4] And MouseHit1 Then
-							e\EventState = 1 ;femur breaker käyntiin
-							If SoundTransmission = True Then ;soitetaan ääni jos sound transmission on päällä
+							e\EventState = 1 ;femur breaker kï¿½yntiin
+							If SoundTransmission = True Then ;soitetaan ï¿½ï¿½ni jos sound transmission on pï¿½ï¿½llï¿½
 								If e\SoundCHN2 <> 0 Then
 									If ChannelPlaying(e\SoundCHN2) Then StopChannel e\SoundCHN2
 								EndIf 
@@ -6948,9 +6947,9 @@ Function UpdateEvents()
 								PositionEntity e\room\Objects[8], 0, 1000.0, 0, True 
 								PositionEntity e\room\Objects[7], 0, 1000.0, 0, True 
 								
-								If e\EventState2 = True Then ;magneetit päällä -> 106 napattu
+								If e\EventState2 = True Then ;magneetit pï¿½ï¿½llï¿½ -> 106 napattu
 									Contained106 = True
-								Else ;magneetit pois päältä -> 106 tulee ulos ja hyökkää
+								Else ;magneetit pois pï¿½ï¿½ltï¿½ -> 106 tulee ulos ja hyï¿½kkï¿½ï¿½
 									PositionEntity(Curr106\Collider, EntityX(e\room\Objects[6], True), EntityY(e\room\Objects[6], True), EntityZ(e\room\Objects[6], True))
 									
 									Contained106 = False
@@ -8928,7 +8927,7 @@ Function MouseLook()
 		Local up# = (Sin(Shake) / (20.0+CrouchState*20.0))*0.6;, side# = Cos(Shake / 2.0) / 35.0		
 		Local roll# = Max(Min(Sin(Shake/2)*2.5*Min(Injuries+0.25,3.0),8.0),-8.0)
 		
-		;käännetään kameraa sivulle jos pelaaja on vammautunut
+		;kï¿½ï¿½nnetï¿½ï¿½n kameraa sivulle jos pelaaja on vammautunut
 		;RotateEntity Collider, EntityPitch(Collider), EntityYaw(Collider), Max(Min(up*30*Injuries,50),-50)
 		PositionEntity Camera, EntityX(Collider), EntityY(Collider), EntityZ(Collider)
 		RotateEntity Camera, 0, EntityYaw(Collider), roll*0.5
@@ -9004,7 +9003,7 @@ Function MouseLook()
 		
 	EndIf
 	
-	;pölyhiukkasia
+	;pï¿½lyhiukkasia
 	If Rand(35) = 1 Then
 		Local pvt% = CreatePivot()
 		PositionEntity(pvt, EntityX(Camera, True), EntityY(Camera, True), EntityZ(Camera, True))
@@ -10027,7 +10026,7 @@ Function DrawGUI()
 								Case 0 ;randomkanava
 									ResumeChannel(RadioCHN(0))
 									If ChannelPlaying(RadioCHN(0)) = False Then RadioCHN(0) = PlaySound(RadioStatic)
-								Case 1 ;hälytyskanava
+								Case 1 ;hï¿½lytyskanava
 									DebugLog RadioState(1) 
 									
 									ResumeChannel(RadioCHN(1))
@@ -10188,7 +10187,7 @@ Function DrawGUI()
 											If RadioCHN(Int(SelectedItem\state2)) <> 0 Then PauseChannel(RadioCHN(Int(SelectedItem\state2)))
 										EndIf
 										SelectedItem\state2 = i-2
-										;jos nykyistä kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
+										;jos nykyistï¿½ kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
 										If RadioCHN(SelectedItem\state2)<>0 Then ResumeChannel(RadioCHN(SelectedItem\state2))
 									EndIf
 								Next
@@ -10768,28 +10767,28 @@ Function LoadEntities()
 	GuardObj = LoadAnimMesh_Strict("GFX\npcs\guard.b3d") ;optimized Guards
 	;GuardTex = LoadTexture_Strict("GFX\npcs\body.jpg") ;optimized the guards even more
 	
-	If BumpEnabled Then
-		bump1 = LoadTexture_Strict("GFX\npcs\MTF_newnormal01.png")
-		TextureBlend bump1, FE_BUMP
+	;If BumpEnabled Then
+		;bump1 = LoadTexture_Strict("GFX\npcs\MTF_newnormal01.png")
+		;TextureBlend bump1, FE_BUMP
 			
-		For i = 1 To CountSurfaces(MTFObj)
-			sf = GetSurface(MTFObj,i)
-			b = GetSurfaceBrush( sf )
-			t1 = GetBrushTexture(b,0)
-			
-			Select Lower(StripPath(TextureName(t1)))
-				Case "MTF_newdiffuse02.png"
-					
-					BrushTexture b, bump1, 0, 0
-					BrushTexture b, t1, 0, 1
-					PaintSurface sf,b
-					
-					If StripPath(TextureName(t1)) <> "" Then FreeTexture t1
-					FreeBrush b	
-			End Select
-		Next
-		FreeTexture bump1	
-	EndIf
+		;For i = 1 To CountSurfaces(MTFObj)
+		;	sf = GetSurface(MTFObj,i)
+		;	b = GetSurfaceBrush( sf )
+		;	t1 = GetBrushTexture(b,0)
+		;	
+		;	Select Lower(StripPath(TextureName(t1)))
+		;		Case "MTF_newdiffuse02.png"
+		;			
+		;			BrushTexture b, bump1, 0, 0
+		;			BrushTexture b, t1, 0, 1
+		;			PaintSurface sf,b
+		;			
+		;			If StripPath(TextureName(t1)) <> "" Then FreeTexture t1
+		;			FreeBrush b	
+		;	End Select
+		;Next
+		;FreeTexture bump1	
+	;EndIf
 	
 	
 	
@@ -10842,15 +10841,15 @@ Function LoadEntities()
 	
 	For i = 0 To 1
 		HideEntity BigDoorOBJ(i)
-		If BumpEnabled And 0 Then 
-			Local bumptex = LoadTexture_Strict("GFX\map\containmentdoorsbump.jpg")
-			TextureBlend bumptex, FE_BUMP
-			Local tex = LoadTexture_Strict("GFX\map\containment_doors.jpg")	
-			EntityTexture BigDoorOBJ(i), bumptex, 0, 0
-			EntityTexture BigDoorOBJ(i), tex, 0, 1
-			FreeEntity tex
-			FreeEntity bumptex
-		EndIf
+		;If BumpEnabled And 0 Then 
+		;	Local bumptex = LoadTexture_Strict("GFX\map\containmentdoorsbump.jpg")
+		;	TextureBlend bumptex, FE_BUMP
+		;	Local tex = LoadTexture_Strict("GFX\map\containment_doors.jpg")	
+		;	EntityTexture BigDoorOBJ(i), bumptex, 0, 0
+		;	EntityTexture BigDoorOBJ(i), tex, 0, 1
+		;	FreeEntity tex
+		;	FreeEntity bumptex
+		;EndIf
 	Next
 	
 	DrawLoading(15)
@@ -11274,14 +11273,8 @@ Function NullGame()
 	For i = 0 To 5
 		If ChannelPlaying(RadioCHN(i)) Then StopChannel(RadioCHN(i))
 	Next
-	
-	DeInitExt
-	
+		
 	ClearWorld
-	
-	InitExt
-	
-	
 	
 End Function
 
@@ -12037,7 +12030,7 @@ Function UpdateMTF%()
 	Local r.Rooms, n.NPCs
 	Local dist#, i%
 	
-	;mtf ei vielä spawnannut, spawnataan jos pelaaja menee tarpeeksi lähelle gate b:tä
+	;mtf ei vielï¿½ spawnannut, spawnataan jos pelaaja menee tarpeeksi lï¿½helle gate b:tï¿½
 	If MTFtimer = 0 Then
 		If Rand(30)=1 Then
 			
@@ -12068,23 +12061,23 @@ Function UpdateMTF%()
 		EndIf
 	Else
 		
-		;mtf spawnannut, aletaan päivittää tekoälyä
+		;mtf spawnannut, aletaan pï¿½ivittï¿½ï¿½ tekoï¿½lyï¿½
 		
 		MTFtimer=MTFtimer+FPSfactor
 		
-		;mtfroomstate 0 = huonetta ei ole alettu vielä etsiä
+		;mtfroomstate 0 = huonetta ei ole alettu vielï¿½ etsiï¿½
 		;mtfroomstate 1 = joku tiimi on menossa huoneeseen
 		;mtfroomstate 2 = huone on tarkistettu
-		;mtfroomstate 3 = huoneeseen ei löydetty reittiä -> yritetään vähän ajan päästä uudestaan
+		;mtfroomstate 3 = huoneeseen ei lï¿½ydetty reittiï¿½ -> yritetï¿½ï¿½n vï¿½hï¿½n ajan pï¿½ï¿½stï¿½ uudestaan
 		
-		;prevstate 0 = käy läpi tutkimattomia huoneita
+		;prevstate 0 = kï¿½y lï¿½pi tutkimattomia huoneita
 		
-		;päivitetään kymmenen sekunnin välein MTF:n "kollektiivinen tekoäly"
+		;pï¿½ivitetï¿½ï¿½n kymmenen sekunnin vï¿½lein MTF:n "kollektiivinen tekoï¿½ly"
 		If MTFtimer > (70*10) Then
 			
 			DebugLog "MTF update"
 			
-			;tiimi saapunut 106:n huoneeseen, "pyydystetään" se
+			;tiimi saapunut 106:n huoneeseen, "pyydystetï¿½ï¿½n" se
 			If MTFrooms[0]<>Null Then
 				If MTFroomState[0]=2 Then
 					If PlayerRoom\RoomTemplate\Name<>"room106" Then
@@ -12106,7 +12099,7 @@ Function UpdateMTF%()
 				If MTFroomState[i]=1 Then MTFroomState[i] = 0
 				
 				If MTFroomState[i]=3 Then
-					DebugLog "ei reittiä ("+MTFrooms[i]\RoomTemplate\Name+"), ohitetaan"
+					DebugLog "ei reittiï¿½ ("+MTFrooms[i]\RoomTemplate\Name+"), ohitetaan"
 					If Rand(8)=1 Then MTFroomState[i] = 0
 				EndIf		
 			Next
@@ -12115,7 +12108,7 @@ Function UpdateMTF%()
 				If n\NPCtype = NPCtypeMTF And n\PrevX = 0 And n\LastSeen =< 0 And n\Target = Null Then
 					If n\PathStatus <> 1 Then 
 						DebugLog "found"
-						;etsitään reitti lähimpään huoneeseen jota ei ole vietä käyty tutkimassa
+						;etsitï¿½ï¿½n reitti lï¿½himpï¿½ï¿½n huoneeseen jota ei ole vietï¿½ kï¿½yty tutkimassa
 						Local targetRoom%, targetRoomDist#=500.0
 						For i = 0 To 6
 							If MTFrooms[i]<>Null Then
@@ -12133,7 +12126,7 @@ Function UpdateMTF%()
 							DebugLog MTFrooms[targetRoom]\RoomTemplate\Name+": "+targetRoomDist
 							
 							If Distance(EntityX(MTFrooms[targetRoom]\obj,True),EntityZ(MTFrooms[targetRoom]\obj,True),EntityX(n\Collider),EntityZ(n\Collider))< 4.0 Then
-								;tiimi saapunut huoneeseen, merkataan että se on tarkistettu
+								;tiimi saapunut huoneeseen, merkataan ettï¿½ se on tarkistettu
 								MTFroomState[targetRoom]=2
 								
 								Select MTFrooms[targetRoom]\RoomTemplate\Name 
@@ -12195,9 +12188,9 @@ Function UpdateMTF%()
 										
 										If n\PathStatus = 2 Then 
 											;MTFroomState[targetRoom]=3
-											DebugLog "reittiä ei löytynyt, roomstate "+MTFroomState[targetRoom]
+											DebugLog "reittiï¿½ ei lï¿½ytynyt, roomstate "+MTFroomState[targetRoom]
 										ElseIf n\PathStatus = 1
-											DebugLog "reitti löytyi"
+											DebugLog "reitti lï¿½ytyi"
 											For n2.npcs = Each NPCs
 												If n2 <> n And n2\NPCtype = NPCtypeMTF And n2\State = 0 Then
 													n2\state = 4
@@ -12649,9 +12642,9 @@ Function UpdateLever(obj, locked=False)
 					EndIf
 				EndIf 
 				
-				If EntityPitch(obj,True) > 75 Then ;päällä
+				If EntityPitch(obj,True) > 75 Then ;pï¿½ï¿½llï¿½
 					If prevpitch =< 75 Then PlaySound2(LeverSFX, Camera, obj, 1.0)
-				ElseIf EntityPitch(obj,True) < -75 ;pois päältä
+				ElseIf EntityPitch(obj,True) < -75 ;pois pï¿½ï¿½ltï¿½
 					If prevpitch => -75 Then PlaySound2(LeverSFX, Camera, obj, 1.0)	
 				EndIf						
 			EndIf
@@ -12668,9 +12661,9 @@ Function UpdateLever(obj, locked=False)
 		
 	EndIf
 	
-	If EntityPitch(obj,True) > 0 Then ;päällä
+	If EntityPitch(obj,True) > 0 Then ;pï¿½ï¿½llï¿½
 		Return True
-	Else ;pois päältä
+	Else ;pois pï¿½ï¿½ltï¿½
 		Return False
 	EndIf	
 	
@@ -12718,9 +12711,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 	If door1\open = False And door2\open = False Then
 		door1\locked = True 
 		door2\locked = True 
-		If State < 0 Then ;ylhäältä alas
+		If State < 0 Then ;ylhï¿½ï¿½ltï¿½ alas
 			State = State - FPSfactor
-			;pelaaja hissin sisällä
+			;pelaaja hissin sisï¿½llï¿½
 			If Abs(EntityX(Collider)-EntityX(room1,True))<280.0*RoomScale Then
 				If Abs(EntityZ(Collider)-EntityZ(room1,True))<280.0*RoomScale Then	
 					inside = True
@@ -12755,9 +12748,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 				
 				PlaySound2(ElevatorBeepSFX, Camera, room1, 4.0)
 			EndIf
-		Else ;alhaalta ylös
+		Else ;alhaalta ylï¿½s
 			State = State + FPSfactor
-			;pelaaja hissin sisällä
+			;pelaaja hissin sisï¿½llï¿½
 			If Abs(EntityX(Collider)-EntityX(room2,True))<280.0*RoomScale Then
 				If Abs(EntityZ(Collider)-EntityZ(room2,True))<280.0*RoomScale Then	
 					inside = True
@@ -12779,7 +12772,7 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 				
 				UseDoor(door1,False)
 				
-				;pelaaja hissin sisällä, siirretään
+				;pelaaja hissin sisï¿½llï¿½, siirretï¿½ï¿½n
 				If inside Then	
 					x# = Max(Min((EntityX(Collider)-EntityX(room2,True)),280*RoomScale-0.17),-280*RoomScale+0.17)
 					z# = Max(Min((EntityZ(Collider)-EntityZ(room2,True)),280*RoomScale-0.17),-280*RoomScale+0.17)
@@ -12822,9 +12815,9 @@ Function UpdateElevators2#(State#, door1.Doors, door2.Doors, room1, room2, event
 	If door1\open = False And door2\open = False Then
 		door1\locked = True 
 		door2\locked = True 
-		If State < 0 Then ;ylhäält?alas
+		If State < 0 Then ;ylhï¿½ï¿½lt?alas
 			State = State - FPSfactor
-			;pelaaja hissin sisäll?
+			;pelaaja hissin sisï¿½ll?
 			If Abs(EntityX(Collider)-EntityX(room1,True))<280.0*RoomScale Then
 				If Abs(EntityZ(Collider)-EntityZ(room1,True))<280.0*RoomScale Then	
 					inside = True
@@ -12876,9 +12869,9 @@ Function UpdateElevators2#(State#, door1.Doors, door2.Doors, room1, room2, event
 				PlaySound2(ElevatorBeepSFX, Camera, room1, 4.0)	
 				;PlaySound(ElevatorBeepSFX)	
 			EndIf
-		Else ;alhaalta ylös
+		Else ;alhaalta ylï¿½s
 			State = State + FPSfactor
-			;pelaaja hissin sisäll?
+			;pelaaja hissin sisï¿½ll?
 			If Abs(EntityX(Collider)-EntityX(room2,True))<280.0*RoomScale Then
 				If Abs(EntityZ(Collider)-EntityZ(room2,True))<280.0*RoomScale Then	
 					inside = True
@@ -12900,7 +12893,7 @@ Function UpdateElevators2#(State#, door1.Doors, door2.Doors, room1, room2, event
 				
 				UseDoor(door1,True)	
 				
-				;pelaaja hissin sisäll? siirretään
+				;pelaaja hissin sisï¿½ll? siirretï¿½ï¿½n
 				If inside Then	
 					
 					dist# = Distance(EntityX(Collider,True),EntityZ(Collider,True),EntityX(room2,True),EntityZ(room2,True))
@@ -12988,11 +12981,11 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 	
 	;Palauttaa:
 	;  True (1) kun:
-	;      Ympyrä [keskipiste = (cx, cy): säde = r]
+	;      Ympyrï¿½ [keskipiste = (cx, cy): sï¿½de = r]
 	;      leikkaa janan, joka kulkee pisteiden (l1x, l1y) & (l2x, l2y) kaitta
 	;  False (0) muulloin
 	
-	;Ympyrän keskipisteen ja (ainakin toisen) janan päätepisteen etäisyys < r
+	;Ympyrï¿½n keskipisteen ja (ainakin toisen) janan pï¿½ï¿½tepisteen etï¿½isyys < r
 	;-> leikkaus
 	If Distance(cx, cy, l1x, l1y) <= r Then
 		Return True
@@ -13002,7 +12995,7 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return True
 	EndIf	
 	
-	;Vektorit (janan vektori ja vektorit janan päätepisteistä ympyrän keskipisteeseen)
+	;Vektorit (janan vektori ja vektorit janan pï¿½ï¿½tepisteistï¿½ ympyrï¿½n keskipisteeseen)
 	Local SegVecX# = l2x - l1x
 	Local SegVecY# = l2y - l1y
 	
@@ -13025,21 +13018,21 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return False
 	EndIf
 	
-	;Janan päätepisteiden kautta kulkevan suoran ;yhtälö; (ax + by + c = 0)
+	;Janan pï¿½ï¿½tepisteiden kautta kulkevan suoran ;yhtï¿½lï¿½; (ax + by + c = 0)
 	Local a# = (l2y - l1y) / (l2x - l1x)
 	Local b# = -1
 	Local c# = -(l2y - l1y) / (l2x - l1x) * l1x + l1y
 	
-	;Ympyrän keskipisteen etäisyys suorasta
+	;Ympyrï¿½n keskipisteen etï¿½isyys suorasta
 	Local d# = Abs(a * cx + b * cy + c) / Sqr(a * a + b * b)
 	
-	;Ympyrä on liian kaukana
+	;Ympyrï¿½ on liian kaukana
 	;-> ei leikkausta
 	If d > r Then Return False
 	
 	;Local kateetin_pituus# = Cos(angle) * hyp
 	
-	;Jos päästään tänne saakka, ympyrä ja jana leikkaavat (tai ovat sisäkkäin)
+	;Jos pï¿½ï¿½stï¿½ï¿½n tï¿½nne saakka, ympyrï¿½ ja jana leikkaavat (tai ovat sisï¿½kkï¿½in)
 	Return True
 End Function
 
@@ -13470,14 +13463,11 @@ Function EntityScaleZ#(entity%, globl% = False)
 End Function 
 
 Function Graphics3DExt%(width%,height%,depth%=32,mode%=2)
-	If FE_InitExtFlag = 1 Then DeInitExt() ;prevent FastExt from breaking itself
 	Graphics3D width,height,depth,mode
-	InitExt()
 End Function
 
 Function ResizeImage2(image%,width%,height%)
    img% = CreateImage(width,height)
-   CopyRectStretch(0,0,ImageWidth(image),ImageHeight(image),0,0,width,height,ImageBuffer(image),ImageBuffer(img))
    FreeImage image
    Return img
 End Function
