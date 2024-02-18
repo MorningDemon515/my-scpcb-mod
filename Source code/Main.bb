@@ -94,10 +94,10 @@ Global SelectedLoadingScreen.LoadingScreens, LoadingScreenAmount%, LoadingScreen
 Global LoadingBack% = LoadImage_Strict("Loadingscreens\loadingback.jpg")
 InitLoadingScreens("Loadingscreens\loadingscreens.ini")
 
-Font1% = LoadFont("cour", Int(18 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_ANTIALIASED,"GFX\cour.ttf")
-Font2% = LoadFont("courbd", Int(58 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_ANTIALIASED,"GFX\courbd.ttf")
-Font3% = LoadFont("courbd", Int(22 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_ANTIALIASED,"GFX\DS-DIGI.ttf")
-Font4% = LoadFont("courbd", Int(60 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_ANTIALIASED,"GFX\DS-DIGI.ttf")
+Font1% = LoadFont("cour", Int(18 * (GraphicHeight / 1024.0)), 0,0,0,quality,"GFX\cour.ttf")
+Font2% = LoadFont("courbd", Int(58 * (GraphicHeight / 1024.0)), 0,0,0,quality,"GFX\courbd.ttf")
+Font3% = LoadFont("courbd", Int(22 * (GraphicHeight / 1024.0)), 0,0,0,quality,"GFX\DS-DIGI.ttf")
+Font4% = LoadFont("courbd", Int(60 * (GraphicHeight / 1024.0)), 0,0,0,quality,"GFX\DS-DIGI.ttf")
 SetFont Font2
 
 Global BlinkMeterIMG% = LoadImage_Strict("GFX\blinkmeter.jpg")

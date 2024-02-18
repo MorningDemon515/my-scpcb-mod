@@ -287,7 +287,7 @@ Function UpdateMainMenu()
 					PutINIValue(OptionFile, "options", "music volume", MusicVolume)
 					PutINIValue(OptionFile, "options", "mouse sensitivity", MouseSens)
 					PutINIValue(OptionFile, "options", "invert mouse y", InvertMouse)
-					PutINIValue(OptionFile, "options", "bump mapping enabled", BumpEnabled)			
+					PutINIValue(OptionFile, "options", "bump mapping enabled", BumpEnabled)		
 					PutINIValue(OptionFile, "options", "HUD enabled", HUDenabled)	
 					
 					PutINIValue(OptionFile, "options", "Right key", KEY_RIGHT)
@@ -505,7 +505,7 @@ Function UpdateMainMenu()
 				
 				Color 255,255,255				
 				;Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
-				;BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)		
+				;BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)	
 				
 				Text (x + 20 * MenuScale, y + 220 * MenuScale, "Control configuration:")	
 				
@@ -621,7 +621,7 @@ Function UpdateLauncher()
 	SetBuffer BackBuffer()
 	InitSpeedText()
 
-	Font1 = LoadFont("cour", 18, 0,0,0,TEXT_ANTIALIASED,"GFX\cour.ttf")
+	Font1 = TextLoadFont("cour", 18, 0,0,0,TEXT_NONANTIALIASED,"GFX\cour.ttf")
 	MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0

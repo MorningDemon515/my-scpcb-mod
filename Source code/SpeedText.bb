@@ -36,6 +36,10 @@ Function Text(x%,y%,txt$,cx% = TEXT_LEFT,cy% = TEXT_TOP,encoding = TEXT_ANSI)
 End Function
 
 Function LoadFont(fontname$, height = 13, bold = 0, italic = 0, underline = 0, quality%, filename$)
+    Local AA% = TEXT_NONANTIALIASED
+
+    quality% = AA
+
     Return TextLoadFont(fontname$, height%, bold%, italic%, underline%, quality%, filename$)
 End Function
 
