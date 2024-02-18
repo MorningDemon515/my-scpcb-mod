@@ -83,7 +83,7 @@ SeedRnd MilliSecs()
 Global GameSaved%
 
 AppTitle "SCP - Containment Breach v"+VersionNumber
-
+PlayVedio()
 ;---------------------------------------------------------------------------------------------------------------------
 
 ;[Block]
@@ -1646,6 +1646,8 @@ Function InitEvents()
 	CreateEvent("exit1", "exit1", 0)
 	
 	CreateEvent("room860","room860",0)
+
+	CreateEvent("are you remember","room2poffices",0)
 	
 End Function
 
@@ -13478,6 +13480,56 @@ Function CatchErrors(location$)
     If Len(errStr) > 0 Then
 	   Runtimeerror "Your game has encountered an error! Located at: " + location$
 	End If   
+
+End Function
+
+Function PlayVedio()
+
+	HidePointer()
+	Local SplashScreenAudio%
+	Local Movie%
+	Local ScaledGraphicHeight%,RealGraphicHeight%,RealGraphicWidth%
+
+	RealGraphicHeight = GetINIString("options.ini","options","height")
+    RealGraphicWidth = GetINIString("options.ini","options","Width")
+
+	Local Ratio# = Float(RealGraphicWidth) / Float(RealGraphicHeight)
+
+	If Ratio > 1.76 And Ratio < 1.78 Then
+		ScaledGraphicHeight = RealGraphicHeight
+	Else
+		ScaledGraphicHeight = Float(RealGraphicWidth) / (16.0 / 9.0)
+	EndIf
+
+	Local MovieFile$, i%
+
+	For i = 0 To 1
+		Select i
+			Case 0
+				;[Block]
+				MovieFile = "GFX\menu\startup_Undertow"
+				;[End Block]
+			Case 1
+				;[Block]
+				MovieFile = "GFX\menu\startup_MDGAME"
+				;[End Block]
+		End Select
+
+		Movie% = OpenMovie(MovieFile + ".avi")
+		SplashScreenAudio% = StreamSound_Strict(MovieFile + ".ogg",1.0,0);, SFXVolume, 0
+
+		Repeat
+			Cls()
+			DrawMovie(Movie, 0, (RealGraphicHeight / 2 - ScaledGraphicHeight / 2), RealGraphicWidth, ScaledGraphicHeight)
+			Flip()
+		Until (GetKey() or (Not IsStreamPlaying_Strict(SplashScreenAudio)))
+		StopStream_Strict(SplashScreenAudio)
+		CloseMovie(Movie)
+
+		Cls()
+		Flip()
+	Next
+	ShowPointer()
 
 End Function
 

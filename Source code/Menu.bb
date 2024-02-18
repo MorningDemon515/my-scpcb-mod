@@ -33,7 +33,7 @@ Global SelectedInputBox%
 
 Global SavePath$ = "Saves\"
 
-;nykyisen tallennuksen nimi ja samalla missï¿½ kansiossa tallennustiedosto sijaitsee saves-kansiossa
+;nykyisen tallennuksen nimi ja samalla missï¿? kansiossa tallennustiedosto sijaitsee saves-kansiossa
 Global CurrSave$
 
 Global SaveGameAmount%
@@ -729,7 +729,7 @@ Function UpdateLauncher()
 	Else
 		PutINIValue(OptionFile, "launcher", "launcher enabled", "false")
 	EndIf
-	
+
 	PutINIValue(OptionFile, "options", "gfx driver", SelectedGFXDriver)
 	DeInitSpeedText()
 End Function

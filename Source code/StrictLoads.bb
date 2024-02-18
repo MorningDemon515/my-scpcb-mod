@@ -57,5 +57,70 @@ Function LoadBrush_Strict(file$,flags,u#=1.0,v#=1.0)
 	Return tmp 
 End Function 
 
+Type Stream
+	Field sfx%
+	Field chn%
+End Type
+
+Const Mode% = 2
+Const TwoD% = 8192
+
+Function StreamSound_Strict(file$,volume#=1.0,custommode=Mode)
+	If FileType(file$)<>1
+		CreateConsoleMsg("Sound " + Chr(34) + file$ + Chr(34) + " not found.")
+		If ConsoleOpening
+			ConsoleOpen = True
+		EndIf
+		Return 0
+	EndIf
+	
+	Local st.Stream = New Stream
+	
+	st\chn = PlayMusic(File)
+
+	If st\chn = -1
+		CreateConsoleMsg("Failed to stream Sound (returned -1): " + Chr(34) + file$ + Chr(34))
+		If ConsoleOpening
+			ConsoleOpen = True
+		EndIf
+		Return -1
+	EndIf
+	
+	ChannelVolume(st\chn, Volume * 1.0)
+	
+	Return Handle(st)
+End Function
+
+Function StopStream_Strict(streamHandle%)
+	Local st.Stream = Object.Stream(streamHandle)
+	
+	If st = Null Then Return
+
+	If st\chn=0 or st\chn=-1
+		CreateConsoleMsg("Failed to stop stream Sound: Return value "+st\chn)
+		Return
+	EndIf
+	
+	StopChannel(st\CHN)
+
+	Delete st
+End Function
+
+Function IsStreamPlaying_Strict(streamHandle%)
+	Local st.Stream = Object.Stream(streamHandle)
+	
+	If st = Null
+		;CreateConsoleMsg("Failed to find stream Sound: Unknown Stream")
+		Return
+	EndIf
+	If st\chn=0 or st\chn=-1
+		CreateConsoleMsg("Failed to find stream Sound: Return value "+st\chn)
+		Return
+	EndIf
+	
+	Return(ChannelPlaying(st\CHN))	
+End Function
+
+
 ;~IDEal Editor Parameters:
 ;~C#Blitz3D
