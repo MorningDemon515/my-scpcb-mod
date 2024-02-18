@@ -13472,6 +13472,15 @@ Function ResizeImage2(image%,width%,height%)
    Return img
 End Function
 
+Function CatchErrors(location$)
+	Local errStr = ErrorLog()
+   
+    If Len(errStr) > 0 Then
+	   Runtimeerror "Your game has encountered an error! Located at: " + location$
+	End If   
+
+End Function
+
 
 ;~IDEal Editor Parameters:
 ;~F#11#59#D5#D9#E0#315#3FD#419#48D#49A#532#595#5AC#5B9#685#737#AB4#C96#CBE#CD5
