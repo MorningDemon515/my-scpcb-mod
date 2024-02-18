@@ -20,11 +20,6 @@ This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
 
 http://creativecommons.org/licenses/by-sa/3.0/
 
-The files FastExt.dll and FastText.dll included in this application is copyright of 
-Mikhail Vostrikov (MixailV [monster-sage@mail.ru], www.fastlibs.com) and may not be 
-redistributed by any means without the prior permission of Mikhail Vostrikov.
-								
-
 **** HOW TO RUN IT **************************************
 
 	Run SCP - Containment Breach.exe in the game folder. 
