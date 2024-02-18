@@ -57,12 +57,9 @@ Function LoadBrush_Strict(file$,flags,u#=1.0,v#=1.0)
 	Return tmp 
 End Function 
 
-;Modified for Fasttext
-Function LoadFont_Strict(file$="Tahoma", height=13, bold=0, italic=0, underline=0)
-	If FileType(file$)<>1 Then RuntimeError "Font " + file$ + " not found."
-	tmp = LoadFont(file, height, bold, italic, underline)  
-	If tmp = 0 Then RuntimeError "Failed to load Font: " + file$ 
-	Return tmp
+;Modified for Speedtext
+Function LoadFont_Strict(fontname$, height = 13, bold = 0, italic = 0, underline = 0, quality%, filename$)
+	Return TextLoadFont(fontname$, height%, bold%, italic%, underline%, quality%, filename$)  
 End Function
 ;~IDEal Editor Parameters:
 ;~C#Blitz3D

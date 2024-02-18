@@ -619,8 +619,9 @@ Function UpdateLauncher()
 	Graphics3DExt(LauncherWidth, LauncherHeight, 0, 2)
 	
 	SetBuffer BackBuffer()
-	
-	Font1 = LoadFont_Strict("GFX\cour.ttf", 18, 0,0,0)
+	InitSpeedText()
+
+	Font1 = LoadFont_Strict("cour", 18, 0,0,0,TEXT_DEFAULT,"GFX\cour.ttf")
 	MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
@@ -730,7 +731,7 @@ Function UpdateLauncher()
 	EndIf
 	
 	PutINIValue(OptionFile, "options", "gfx driver", SelectedGFXDriver)
-	
+	DeInitSpeedText()
 End Function
 
 
@@ -1101,53 +1102,9 @@ End Function
 
 
 
-Function RowText(A$, X, Y, W, H)
+Function RowText(A$, X, Y, W, H,ax = 0,format = TEXT_WORDWRAP, encoding = TEXT_ANSI)
 	
-	;Display A$ starting at X,Y - no wider than W And no taller than H (all in pixels).
-	;Leading is optional extra vertical spacing in pixels
-	
-	If H<1 Then H=2048
-	
-	Local LinesShown = 0
-	Local Height = StringHeight(A$) + Leading
-	Local b$
-	
-	While Len(A) > 0
-		Local space = Instr(A$, "")
-		If space = 0 Then space = Len(A$)
-		Local temp$ = Left(A$, space)
-		Local trimmed$ = Trim(temp) ;we might ignore a final space 
-		Local extra = 0 ;we haven't ignored it yet
-		;ignore final space If doing so would make a word fit at End of Line:
-		If (StringWidth (b$ + temp$) > W) And (StringWidth (b$ + trimmed$) <= W) Then
-			temp = trimmed
-			extra = 1
-		EndIf
-		
-		If StringWidth (b$ + temp$) > W Then ;too big, so Print what will fit
-			If align Then
-				Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b)
-			Else
-				Text(X, LinesShown * Height + Y, b)
-			EndIf			
-			
-			LinesShown = LinesShown + 1
-			b$=""
-		Else ;append it To b$ (which will eventually be printed) And remove it from A$
-			b$ = b$ + temp$
-			A$ = Right(A$, Len(A$) - (Len(temp$) + extra))
-		EndIf
-		
-		If ((LinesShown + 1) * Height) > H Then Exit ;the Next Line would be too tall, so leave
-	Wend
-	
-	If (b$ <> "") And((LinesShown + 1) <= H) Then
-		If align Then
-			Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
-		Else
-			Text(X, LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
-		EndIf
-	EndIf
+	TextDrawRect(X,Y,W,H,A$,ax,format%, encoding%)
 	
 End Function
 

@@ -1,5 +1,6 @@
 
 Include "Source code\StrictLoads.bb"
+Include "Source code\SpeedText.bb"
 Global OptionFile$ = "options.ini"
 
 Global Font1%, Font2%, Font3%, Font4%
@@ -86,17 +87,17 @@ AppTitle "SCP - Containment Breach v"+VersionNumber
 ;---------------------------------------------------------------------------------------------------------------------
 
 ;[Block]
-
+InitSpeedText()
 Global CursorIMG% = LoadImage_Strict("GFX\cursor.png")
 
 Global SelectedLoadingScreen.LoadingScreens, LoadingScreenAmount%, LoadingScreenText%
 Global LoadingBack% = LoadImage_Strict("Loadingscreens\loadingback.jpg")
 InitLoadingScreens("Loadingscreens\loadingscreens.ini")
 
-Font1% = LoadFont_Strict("GFX\cour.ttf", Int(18 * (GraphicHeight / 1024.0)), 0,0,0)
-Font2% = LoadFont_Strict("GFX\courbd.ttf", Int(58 * (GraphicHeight / 1024.0)), 0,0,0)
-Font3% = LoadFont_Strict("GFX\DS-DIGI.ttf", Int(22 * (GraphicHeight / 1024.0)), 0,0,0)
-Font4% = LoadFont_Strict("GFX\DS-DIGI.ttf", Int(60 * (GraphicHeight / 1024.0)), 0,0,0)
+Font1% = LoadFont_Strict("cour", Int(18 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_DEFAULT,"GFX\cour.ttf")
+Font2% = LoadFont_Strict("courbd", Int(58 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_DEFAULT,"GFX\courbd.ttf")
+Font3% = LoadFont_Strict("courbd", Int(22 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_DEFAULT,"GFX\DS-DIGI.ttf")
+Font4% = LoadFont_Strict("courbd", Int(60 * (GraphicHeight / 1024.0)), 0,0,0,TEXT_DEFAULT,"GFX\DS-DIGI.ttf")
 SetFont Font2
 
 Global BlinkMeterIMG% = LoadImage_Strict("GFX\blinkmeter.jpg")
