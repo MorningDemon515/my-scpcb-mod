@@ -620,7 +620,7 @@ Function UpdateLauncher()
 	
 	SetBuffer BackBuffer()
 	
-	Font1 = LoadFont_Strict("GFX\cour.ttf", 18, 0,0,0,0, FT_DEFAULT)
+	Font1 = LoadFont_Strict("GFX\cour.ttf", 18, 0,0,0)
 	MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
@@ -934,20 +934,20 @@ Function DrawLoading(percent%, shortloading=False)
 				strtemp$ = Replace(SelectedLoadingScreen\txt[0],Mid(SelectedLoadingScreen\txt[0],Rand(1,Len(strtemp)-1),1),Chr(Rand(130,250)))
 			Next		
 			SetFont Font1
-			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)		
+			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300)		
 		Else
 			
 			Color 0,0,0
 			SetFont Font2
 			Text(GraphicWidth / 2 + 1, GraphicHeight / 2 + 80 + 1, SelectedLoadingScreen\title, True, True)
 			SetFont Font1
-			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200+1, GraphicHeight / 2 +120+1,400,300,True)
+			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200+1, GraphicHeight / 2 +120+1,400,300)
 			
 			Color 255,255,255
 			SetFont Font2
 			Text(GraphicWidth / 2, GraphicHeight / 2 +80, SelectedLoadingScreen\title, True, True)
 			SetFont Font1
-			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)
+			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300)
 			
 		EndIf
 		
@@ -1101,10 +1101,53 @@ End Function
 
 
 
-Function RowText(A$, X, Y, W, H, align% = 0, Leading = 0)
+Function RowText(A$, X, Y, W, H)
 	
-	TextRect(X, Y, W, H, A$, align)
-	;TextRect(X, Y, W, H, txt$, formatting=FT_LEFT, encoding=FT_UNICODE)
+	;Display A$ starting at X,Y - no wider than W And no taller than H (all in pixels).
+	;Leading is optional extra vertical spacing in pixels
+	
+	If H<1 Then H=2048
+	
+	Local LinesShown = 0
+	Local Height = StringHeight(A$) + Leading
+	Local b$
+	
+	While Len(A) > 0
+		Local space = Instr(A$, "")
+		If space = 0 Then space = Len(A$)
+		Local temp$ = Left(A$, space)
+		Local trimmed$ = Trim(temp) ;we might ignore a final space 
+		Local extra = 0 ;we haven't ignored it yet
+		;ignore final space If doing so would make a word fit at End of Line:
+		If (StringWidth (b$ + temp$) > W) And (StringWidth (b$ + trimmed$) <= W) Then
+			temp = trimmed
+			extra = 1
+		EndIf
+		
+		If StringWidth (b$ + temp$) > W Then ;too big, so Print what will fit
+			If align Then
+				Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b)
+			Else
+				Text(X, LinesShown * Height + Y, b)
+			EndIf			
+			
+			LinesShown = LinesShown + 1
+			b$=""
+		Else ;append it To b$ (which will eventually be printed) And remove it from A$
+			b$ = b$ + temp$
+			A$ = Right(A$, Len(A$) - (Len(temp$) + extra))
+		EndIf
+		
+		If ((LinesShown + 1) * Height) > H Then Exit ;the Next Line would be too tall, so leave
+	Wend
+	
+	If (b$ <> "") And((LinesShown + 1) <= H) Then
+		If align Then
+			Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
+		Else
+			Text(X, LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
+		EndIf
+	EndIf
 	
 End Function
 
