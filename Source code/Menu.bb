@@ -621,7 +621,7 @@ Function UpdateLauncher()
 	SetBuffer BackBuffer()
 	InitSpeedText()
 
-	Font1 = LoadFont("cour", 18, 0,0,0,TEXT_DEFAULT,"GFX\cour.ttf")
+	Font1 = LoadFont("cour", 18, 0,0,0,TEXT_ANTIALIASED,"GFX\cour.ttf")
 	MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
