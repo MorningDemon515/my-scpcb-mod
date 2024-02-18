@@ -35,6 +35,10 @@ Function Text(x%,y%,txt$,cx% = TEXT_LEFT,cy% = TEXT_TOP,encoding = TEXT_ANSI)
     TextDraw(x%, y%, txt$, cx%, cy%, encoding%)
 End Function
 
+Function LoadFont(fontname$, height = 13, bold = 0, italic = 0, underline = 0, quality%, filename$)
+    Return TextLoadFont(fontname$, height%, bold%, italic%, underline%, quality%, filename$)
+End Function
+
 Function SetFont(font%)
     TextSetFont(font%)
 End Function
