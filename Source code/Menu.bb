@@ -504,8 +504,8 @@ Function UpdateMainMenu()
 				HUDenabled = DrawTick(x + 280 * MenuScale, y + 141 * MenuScale, HUDenabled)		
 				
 				Color 255,255,255				
-				;Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
-				;BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)	
+				Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
+				BumpEnabled = DrawTick(x + 280 * MenuScale, y + 181 * MenuScale, BumpEnabled)	
 				
 				Text (x + 20 * MenuScale, y + 220 * MenuScale, "Control configuration:")	
 				
